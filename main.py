@@ -1,17 +1,21 @@
-#!/bin/python
+#!/bin/python3
 
-from flask import Flask, render_template, Response
+from flask import Flask, Response
 from camera import Camera
+from time import sleep
+from datetime import datetime
+import os
+import threading
 
 app = Flask(__name__)
 camera = Camera()
 
 INTERVAL = 500
-FILETARGET = "/mnt/shared/timelapse/pommefraiche/image_"
+FILETARGET = "/mnt/shared/PATH"
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	return "Srv"
 
 def gen():
 	while True:
@@ -24,12 +28,16 @@ def frame():
 	return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def timelapse():
-	frame = 0
+	currentTime = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
+	path = FILETARGET + "/" + currentTime + "/"
+	os.mkdir(path)
+
 	while True:
 		currentTime = datetime.now().strftime("%d_%m_%Y_%H_%M_%S")
-		camera.saveFrame(FILETARGET + str(frame) + _ + currentTime + ".jpg")
-		frame = frame + 1
+		camera.saveFrame(path + currentTime + ".jpg")
 		sleep(INTERVAL)
 
 if __name__ == '__main__':
+	t = threading.Thread(target=timelapse)
+	t.start()
 	app.run(host='0.0.0.0', debug=False)

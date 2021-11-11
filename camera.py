@@ -8,7 +8,7 @@ class Camera():
 	def saveFrame(self, dst):
 		self.camera.capture(dst)
 
-	def getFrame(self);
+	def getFrame(self):
 		stream = BytesIO()
 		for _ in self.camera.capture_continuous(stream, 'jpeg', use_video_port=True):
 			stream.seek(0)
