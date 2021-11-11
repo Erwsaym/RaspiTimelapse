@@ -1,0 +1,7 @@
+# RaspiTimelapse
+
+## Purpose
+
+## Dependencies
+
+
