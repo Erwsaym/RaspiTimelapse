@@ -10,8 +10,8 @@ import threading
 app = Flask(__name__)
 camera = Camera()
 
-INTERVAL = 500
-FILETARGET = "/mnt/shared/PATH"
+INTERVAL = 500 # Time in second each time we want to take a photo
+FILETARGET = "/mnt/shared/PATH" # Directory where to save photo
 
 @app.route('/')
 def index():

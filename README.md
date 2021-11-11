@@ -2,6 +2,8 @@
 
 ## Purpose
 
+The purpose of this project is to 
+
 ## Dependencies
 
 sudo apt install python3-pip

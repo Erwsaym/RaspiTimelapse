@@ -4,6 +4,7 @@ from io import BytesIO
 class Camera():
 	def __init__(self):
 		self.camera = PiCamera()
+		self.camera.resolution = (2592, 1944)
 
 	def saveFrame(self, dst):
 		self.camera.capture(dst)
