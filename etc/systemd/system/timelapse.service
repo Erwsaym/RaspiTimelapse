@@ -1,0 +1,15 @@
+[Unit]
+Description=Timelapse
+After=syslog.target network.target
+
+[Service]
+Type=fork
+
+User=pi
+Group=pi
+
+ExecStart=/home/pi/RaspiTimelapse/timelapse.sh
+WorkingDirectory=/home/pi/RaspiTimelapse
+
+[Install]
+WantedBy=multi-user.target
